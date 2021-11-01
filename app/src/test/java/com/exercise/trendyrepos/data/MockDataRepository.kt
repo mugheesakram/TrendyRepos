@@ -8,7 +8,10 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 
 class MockDataRepository : IDataInfo {
-    override suspend fun getTopGithubRepositories(query: String): ApiResponse<GithubRepos> {
+    override suspend fun getTopGithubRepositories(
+        query: String,
+        isRefresh: Boolean
+    ): ApiResponse<GithubRepos> {
         val response = getMockResponse()
         return if (query.isNotBlank())
             ApiResponse.Success(200, response)

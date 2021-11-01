@@ -4,5 +4,8 @@ import com.exercise.trendyrepos.data.base.ApiResponse
 import com.exercise.trendyrepos.data.dto.GithubRepos
 
 interface IDataInfo {
-    suspend fun getTopGithubRepositories(query: String): ApiResponse<GithubRepos>
+    suspend fun getTopGithubRepositories(
+        query: String,
+        isRefresh: Boolean
+    ): ApiResponse<GithubRepos>
 }

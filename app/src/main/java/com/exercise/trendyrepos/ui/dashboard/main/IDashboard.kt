@@ -17,7 +17,7 @@ interface IDashboard {
 
     interface ViewModel : IBase.ViewModel<State> {
         val repos: LiveData<MutableList<Repo>>
-        fun getTopGithubRepos(query: String)
+        fun getTopGithubRepos(query: String, isRefresh: Boolean)
     }
 
     interface State : IBase.State

@@ -24,14 +24,18 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getTopGithubRepos("language=+sort:stars")
+        viewModel.getTopGithubRepos("language=+sort:stars", false)
         viewModelObservers()
     }
 
     override fun onResume() {
         super.onResume()
         binding.btnRetry.setOnClickListener {
-            viewModel.getTopGithubRepos("language=+sort:stars")
+            viewModel.getTopGithubRepos("language=+sort:stars", false)
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getTopGithubRepos("language=+sort:stars", true)
         }
     }
 
@@ -74,6 +78,9 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
 
     override fun viewModelObservers() {
         viewModel.repos.observe(this, ::setGithubRepos)
-        viewModel.viewState.uiState.observe(this, ::handleUIState)
+        viewModel.viewState.uiState.observe(this, {
+            binding.swipeRefreshLayout.isRefreshing = false
+            handleUIState(it)
+        })
     }
 }

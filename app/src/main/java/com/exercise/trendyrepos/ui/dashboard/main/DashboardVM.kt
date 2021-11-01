@@ -22,10 +22,10 @@ class DashboardVM @Inject constructor(
     private val _repos: MutableLiveData<MutableList<Repo>> = MutableLiveData()
     override var repos: LiveData<MutableList<Repo>> = _repos
 
-    override fun getTopGithubRepos(query: String) {
+    override fun getTopGithubRepos(query: String, isRefresh: Boolean) {
         launch {
             viewState.uiState.postValue(UIState.Loading)
-            val response = repository.getTopGithubRepositories(query)
+            val response = repository.getTopGithubRepositories(query, isRefresh)
             withContext(Dispatchers.Main) {
                 when (response) {
                     is ApiResponse.Success -> {

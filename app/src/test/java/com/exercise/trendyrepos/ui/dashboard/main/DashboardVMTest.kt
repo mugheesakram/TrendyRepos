@@ -5,7 +5,6 @@ import com.exercise.trendyrepos.CoroutineRule
 import com.exercise.trendyrepos.data.IDataInfo
 import com.exercise.trendyrepos.data.MockDataRepository
 import com.exercise.trendyrepos.getOrAwaitValue
-import com.exercise.trendyrepos.utils.base.UIState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.*
 
@@ -28,13 +27,13 @@ class DashboardVMTest {
 
     @Test
     fun `get github repos if data is not null or empty`() {
-        sut.getTopGithubRepos("language=+sort:stars")
+        sut.getTopGithubRepos("language=+sort:stars", false)
         Assert.assertEquals(false, sut.repos.getOrAwaitValue().isNullOrEmpty())
     }
 
     @Test
     fun `get github repos if data is null or empty`() {
-        sut.getTopGithubRepos("")
+        sut.getTopGithubRepos("", false)
         val actual = sut.repos.getOrAwaitValue().isNullOrEmpty()
 
         Assert.assertEquals(true, actual)
