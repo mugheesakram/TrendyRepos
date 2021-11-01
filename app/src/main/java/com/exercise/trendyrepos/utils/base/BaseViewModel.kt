@@ -5,17 +5,12 @@ import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 
 abstract class BaseViewModel<S : IBase.State> : ViewModel(), ILifecycle, IBase.ViewModel<S> {
-    fun launch(dispatcher: Dispatcher = Dispatcher.Background, block: suspend () -> Unit) {
-        viewModelScope.launch(
-            when (dispatcher) {
-                Dispatcher.Main -> Dispatchers.Main
-                Dispatcher.Background -> Dispatchers.IO
-                Dispatcher.LongOperation -> Dispatchers.Default
-            }
-        ) { block() }
+    fun launch(dispatcher: CoroutineContext = Dispatchers.IO, block: suspend () -> Unit) {
+        viewModelScope.launch(dispatcher) { block() }
     }
 
     fun <T> launchAsync(block: suspend () -> T): Deferred<T> =

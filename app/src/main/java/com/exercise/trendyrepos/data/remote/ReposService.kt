@@ -1,6 +1,6 @@
 package com.exercise.trendyrepos.data.remote
 
-import com.exercise.trendyrepos.data.responses.GithubRepos
+import com.exercise.trendyrepos.data.dto.GithubRepos
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

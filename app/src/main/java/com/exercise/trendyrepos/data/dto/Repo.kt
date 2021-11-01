@@ -1,4 +1,4 @@
-package com.exercise.trendyrepos.data.responses
+package com.exercise.trendyrepos.data.dto
 
 
 import androidx.room.Embedded

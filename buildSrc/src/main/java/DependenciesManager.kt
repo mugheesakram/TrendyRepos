@@ -66,6 +66,9 @@ object DependenciesManager {
         add(TestDependencies.JUPITER)
         add(TestDependencies.TESTEXTENSIONS)
         add(TestDependencies.HILTTESTING)
+        add(TestDependencies.MOCK_WEB_SERVER)
+        add(TestDependencies.COROUTINES)
+        add(TestDependencies.ANDROIDX_ARCH_CORE)
 
     }
     val androidTestImplementation = arrayListOf<String>().apply {

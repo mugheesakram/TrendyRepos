@@ -13,6 +13,11 @@ interface IBase {
     }
 
     interface State {
-        var loaderState: MutableLiveData<Any?>
+        var uiState: MutableLiveData<UIState>
     }
+}
+
+sealed class UIState {
+    object Loading : UIState()
+    data class Error(val error: String? = null) : UIState()
 }

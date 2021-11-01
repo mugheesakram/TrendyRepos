@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.exercise.trendyrepos.data.responses.Repo
+import com.exercise.trendyrepos.data.dto.Repo
 
 @Dao
 interface TrendyDao {

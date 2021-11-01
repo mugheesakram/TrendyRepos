@@ -59,4 +59,6 @@ object TestDependenciesVersions {
     const val MOCKITO_CORE = "3.7.0"
     const val JUPITER = "5.7.0"
     const val MOCK_WEB_SERVER = "4.9.2"
+    const val COROUTINES = "1.4.2-native-mt"
+    const val ANDROIDX_ARCH_CORE = "2.1.0"
 }

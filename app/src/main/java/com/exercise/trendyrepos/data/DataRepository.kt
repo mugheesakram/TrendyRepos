@@ -1,17 +1,16 @@
 package com.exercise.trendyrepos.data
 
 import com.exercise.trendyrepos.data.base.ApiResponse
-import com.exercise.trendyrepos.data.local.LocalRepository
-import com.exercise.trendyrepos.data.responses.GithubRepos
-import com.exercise.trendyrepos.data.remote.RemoteRepository
+import com.exercise.trendyrepos.data.local.ITrendyReposDatabase
 import com.exercise.trendyrepos.data.remote.ReposApi
+import com.exercise.trendyrepos.data.dto.GithubRepos
 import javax.inject.Inject
 
 class DataRepository @Inject constructor(
-    private val localRepository: LocalRepository,
-    private val remoteRepository: RemoteRepository
-) : ReposApi {
-    override suspend fun getTopApi(query: String): ApiResponse<GithubRepos> {
+    private val localRepository: ITrendyReposDatabase,
+    private val remoteRepository: ReposApi
+) : IDataInfo {
+    override suspend fun getTopGithubRepositories(query: String): ApiResponse<GithubRepos> {
         val repos = localRepository.getTopRepos()
         return when {
             repos.isNotEmpty() -> {

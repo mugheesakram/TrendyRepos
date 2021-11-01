@@ -116,6 +116,10 @@ object TestDependencies {
     const val JUPITER =
         "org.junit.jupiter:junit-jupiter-params:${TestDependenciesVersions.JUPITER}"
     const val MOCK_WEB_SERVER = "com.squareup.okhttp3:mockwebserver:${TestDependenciesVersions.MOCK_WEB_SERVER}"
+    const val COROUTINES =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${TestDependenciesVersions.COROUTINES}"
+    const val ANDROIDX_ARCH_CORE =
+        "androidx.arch.core:core-testing:${TestDependenciesVersions.ANDROIDX_ARCH_CORE}"
 }
 
 object RoomDependencies {

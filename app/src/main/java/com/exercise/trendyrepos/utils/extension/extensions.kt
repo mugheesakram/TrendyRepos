@@ -1,8 +1,11 @@
 package com.exercise.trendyrepos.utils.extension
 
-import android.content.Context
-import android.widget.Toast
+import android.view.View
 
-fun Context.toast(msg: String) {
-    Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+fun View.toVisible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.toGone() {
+    this.visibility = View.GONE
 }

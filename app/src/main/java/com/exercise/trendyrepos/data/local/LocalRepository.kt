@@ -1,6 +1,6 @@
 package com.exercise.trendyrepos.data.local
 
-import com.exercise.trendyrepos.data.responses.Repo
+import com.exercise.trendyrepos.data.dto.Repo
 import javax.inject.Inject
 
 class LocalRepository @Inject constructor(private val trendyDao: TrendyDao) :
