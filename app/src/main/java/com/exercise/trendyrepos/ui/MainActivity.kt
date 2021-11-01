@@ -1,7 +1,8 @@
-package com.exercise.trendyrepos
+package com.exercise.trendyrepos.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.exercise.trendyrepos.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

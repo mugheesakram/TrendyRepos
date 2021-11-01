@@ -37,9 +37,7 @@ object DependenciesManager {
         add(AndroidxDependencies.CONSTRAINT_LAYOUT_SOLVER)
         add(AndroidxDependencies.CARD_VIEW)
         add(AndroidxDependencies.RECYCLERVIEW)
-        add(AndroidxDependencies.VIEWPAGER2)
         add(AndroidxDependencies.MATERIAL)
-        add(AndroidxDependencies.PAGING_RUNTIME)
         add(AndroidxDependencies.SWIPE_REFRESH)
 
     }
@@ -62,10 +60,13 @@ object DependenciesManager {
         add(HiltDaggerDependencies.DAGGER_COMPILER)
     }
     val testingImplementation = arrayListOf<String>().apply {
-        add(TestDependencies.JUNIT4)
+        add(TestDependencies.JUNIT)
         add(TestDependencies.MOCKK)
         add(TestDependencies.ROBOLECTRIC)
         add(TestDependencies.JUPITER)
+        add(TestDependencies.TESTEXTENSIONS)
+        add(TestDependencies.HILTTESTING)
+
     }
     val androidTestImplementation = arrayListOf<String>().apply {
         add(TestDependencies.TESTEXTENSIONS)
@@ -76,6 +77,11 @@ object DependenciesManager {
         add(TestDependencies.HILTTESTING)
         add(TestDependencies.MOCKITO_CORE)
         add(TestDependencies.MOCKITO_INLINE)
+    }
+
+    val roomImplementation = arrayListOf<String>().apply{
+        add(RoomDependencies.ROOM_RUNTIME)
+        add(RoomDependencies.ROOM_KTX)
     }
 }
 

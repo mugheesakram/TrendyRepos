@@ -17,7 +17,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : IBase.ViewModel<*>> : IBase
     abstract fun getLayoutId(): Int
     abstract fun getBindingVariable(): Int
     lateinit var mViewDataBinding: T
-    private var progress: Dialog? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,12 +33,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : IBase.ViewModel<*>> : IBase
                     is String -> {
                         showToast(it)
                     }
-                    is Boolean -> {
-                        showLoader(it)
-                    }
-                    else -> {
-
-                    }
                 }
             }
         })
@@ -49,13 +42,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : IBase.ViewModel<*>> : IBase
         if (msg.isNotBlank()) {
             requireActivity().toast(msg)
         }
-    }
-
-    private fun showLoader(isVisible: Boolean) {
-        if (isVisible) {
-            progress = createProgressDialog(requireContext())
-            progress?.show()
-        } else progress?.dismiss()
     }
 
     private fun initiateViewBinding(
@@ -97,17 +83,4 @@ abstract class BaseFragment<T : ViewDataBinding, V : IBase.ViewModel<*>> : IBase
         }
     }
 
-    private fun createProgressDialog(context: Context): Dialog {
-        val dialog = Dialog(context)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.progress_dialog)
-        dialog.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT
-        )
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        return dialog
-    }
 }

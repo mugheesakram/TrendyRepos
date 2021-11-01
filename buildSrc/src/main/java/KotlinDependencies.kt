@@ -64,9 +64,7 @@ object AndroidxDependencies {
     const val CARD_VIEW = "androidx.cardview:cardview:${AndroidXVersions.CARD_VIEW}"
     const val RECYCLERVIEW =
         "androidx.recyclerview:recyclerview:${AndroidXVersions.RECYCLERVIEW}"
-    const val VIEWPAGER2 = "androidx.viewpager2:viewpager2:${AndroidXVersions.VIEWPAGER2}"
     const val MATERIAL = "com.google.android.material:material:${AndroidXVersions.MATERIAL}"
-    const val PAGING_RUNTIME = "androidx.paging:paging-runtime:${AndroidXVersions.PAGING}"
     const val SWIPE_REFRESH = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
 
@@ -98,7 +96,7 @@ object HiltDaggerDependencies {
 }
 
 object TestDependencies {
-    const val JUNIT4 = "junit:junit:${TestDependenciesVersions.JUNIT4}"
+    const val JUNIT = "junit:junit:${TestDependenciesVersions.JUNIT4}"
     const val MOCKK = "io.mockk:mockk:${TestDependenciesVersions.MOCKK}"
     const val ROBOLECTRIC = "org.robolectric:robolectric:${TestDependenciesVersions.ROBOLECTRIC}"
     const val KLUENT = "org.amshove.kluent:kluent:${TestDependenciesVersions.KLUENT}"
@@ -117,4 +115,13 @@ object TestDependencies {
         "org.mockito:mockito-inline:${TestDependenciesVersions.MOCKITO_CORE}"
     const val JUPITER =
         "org.junit.jupiter:junit-jupiter-params:${TestDependenciesVersions.JUPITER}"
+    const val MOCK_WEB_SERVER = "com.squareup.okhttp3:mockwebserver:${TestDependenciesVersions.MOCK_WEB_SERVER}"
 }
+
+object RoomDependencies {
+    const val ROOM_RUNTIME = "androidx.room:room-runtime:${AndroidXVersions.ROOM_VERSION}"
+    const val ROOM_COMPILER = "androidx.room:room-compiler:${AndroidXVersions.ROOM_VERSION}"
+    const val ROOM_KTX = "androidx.room:room-ktx:${AndroidXVersions.ROOM_VERSION}"
+}
+
+

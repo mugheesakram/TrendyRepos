@@ -10,25 +10,25 @@ const val MALFORMED_JSON_EXCEPTION_CODE = 0
 
 abstract class BaseRepository : IRepository {
 
-    override suspend fun <T : ApiResponse> executeSafely(call: suspend () -> Response<T>): RetroApiResponse<T> {
+    override suspend fun <T : BaseResponse> executeSafely(call: suspend () -> Response<T>): ApiResponse<T> {
         try {
             val response: Response<T> = call.invoke()
             if (response.isSuccessful) {
-                return RetroApiResponse.Success(response.code(), response.body()!!)
+                return ApiResponse.Success(response.code(), response.body()!!)
             }
 
             // Check if this is not a server side error (4** or 5**) then return error instead of success
-            return RetroApiResponse.Error(detectError(response))
+            return ApiResponse.Error(detectError(response))
 
         } catch (exception: MalformedJsonException1) {
-            return RetroApiResponse.Error(
+            return ApiResponse.Error(
                 ApiError(
                     MALFORMED_JSON_EXCEPTION_CODE,
                     exception.localizedMessage ?: ""
                 )
             )
         } catch (exception: Exception) {
-            return RetroApiResponse.Error(
+            return ApiResponse.Error(
                 ApiError(
                     getDefaultCode(),
                     exception.localizedMessage ?: ""
@@ -37,7 +37,7 @@ abstract class BaseRepository : IRepository {
         }
     }
 
-    private fun <T : ApiResponse> detectError(response: Response<T>): ApiError {
+    private fun <T : BaseResponse> detectError(response: Response<T>): ApiError {
         return when (response.code()) {
             403 -> getApiError(mapError(NetworkErrors.Forbidden, response.code()))
             404 -> getApiError(mapError(NetworkErrors.NotFound, response.code()))

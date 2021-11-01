@@ -37,11 +37,6 @@ abstract class BaseActivity<VB : ViewDataBinding, V : IBase.ViewModel<*>> : IBas
                     is String -> {
                         showToast(it)
                     }
-                    is Boolean -> {
-                        showLoader(it)
-                    }
-                    else -> {
-                    }
                 }
             }
         })
@@ -59,20 +54,6 @@ abstract class BaseActivity<VB : ViewDataBinding, V : IBase.ViewModel<*>> : IBas
         }
     }
 
-    private fun createProgressDialog(context: Context): Dialog {
-        val dialog = Dialog(context)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.progress_dialog)
-        dialog.window?.setLayout(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT
-        )
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        return dialog
-    }
-
     private fun performDataBinding() {
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         binding.setVariable(getBindingVariable(), viewModel)
@@ -84,13 +65,6 @@ abstract class BaseActivity<VB : ViewDataBinding, V : IBase.ViewModel<*>> : IBas
         if (msg.isNotBlank()) {
             toast(msg)
         }
-    }
-
-    private fun showLoader(isVisible: Boolean) {
-        if (isVisible) {
-            progress = createProgressDialog(this)
-            progress?.show()
-        } else progress?.dismiss()
     }
 
     override fun onDestroy() {

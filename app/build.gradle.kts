@@ -19,30 +19,23 @@ android {
         versionName = AppConfig.versionName
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
 
-//        val localProperties = File(project.rootDir, "buildSrc/apikeys.properties")
-//        val properties = Properties()
-//        if (localProperties.exists()) {
-//            localProperties.inputStream().use { properties.load(it) }
-//            try {
-//                if (properties.containsKey("API_KEY")) {
-//                    buildConfigField(
-//                        "String",
-//                        "API_KEY",
-//                        properties["API_KEY"].toString()
-//                    )
-//                }
-//                if (properties.containsKey("BASE_URL")) {
-//                    buildConfigField(
-//                        "String",
-//                        "BASE_URL",
-//                        properties["BASE_URL"].toString()
-//                    )
-//                }
-//
-//            } catch (e: Exception) {
-//                System.err.println(e.printStackTrace())
-//            }
-//        }
+        val localProperties = File(project.rootDir, "buildSrc/apikeys.properties")
+        val properties = Properties()
+        if (localProperties.exists()) {
+            localProperties.inputStream().use { properties.load(it) }
+            try {
+                if (properties.containsKey("BASE_URL")) {
+                    buildConfigField(
+                        "String",
+                        "BASE_URL",
+                        properties["BASE_URL"].toString()
+                    )
+                }
+
+            } catch (e: Exception) {
+                System.err.println(e.printStackTrace())
+            }
+        }
     }
 
 
@@ -84,7 +77,9 @@ dependencies {
     implementation(DependenciesManager.navigationImplementation)
     implementation(DependenciesManager.thirdPartyImplementation)
     implementation(DependenciesManager.hiltImplementation)
+    implementation(DependenciesManager.roomImplementation)
     testImplementation(DependenciesManager.testingImplementation)
     kapt(DependenciesManager.hiltKapt)
+    kapt(RoomDependencies.ROOM_COMPILER)
     androidTestImplementation(DependenciesManager.androidTestImplementation)
 }

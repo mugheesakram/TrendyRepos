@@ -6,8 +6,7 @@ object AndroidXVersions {
     const val RECYCLERVIEW = "1.2.1"
     const val CARD_VIEW = "1.0.0"
     const val MATERIAL = "1.3.0"
-    const val VIEWPAGER2 = "1.0.0"
-    const val PAGING = "3.0.0"
+    const val ROOM_VERSION = "2.4.0-alpha03"
 }
 
 object LifeCycle_KTX {
@@ -59,4 +58,5 @@ object TestDependenciesVersions {
     const val MOCKITO_INLINE = "3.7.0"
     const val MOCKITO_CORE = "3.7.0"
     const val JUPITER = "5.7.0"
+    const val MOCK_WEB_SERVER = "4.9.2"
 }
