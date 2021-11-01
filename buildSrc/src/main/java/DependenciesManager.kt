@@ -31,26 +31,17 @@ object DependenciesManager {
     }
     val androidxImplementation = arrayListOf<String>().apply {
         add(AndroidxDependencies.APPCOMPAT)
-        add(AndroidxDependencies.FRAGMENT_KTX)
         add(AndroidxDependencies.ACTIVITY_KTX)
         add(AndroidxDependencies.CONSTRAINT_LAYOUT)
         add(AndroidxDependencies.CONSTRAINT_LAYOUT_SOLVER)
-        add(AndroidxDependencies.CARD_VIEW)
         add(AndroidxDependencies.RECYCLERVIEW)
         add(AndroidxDependencies.MATERIAL)
         add(AndroidxDependencies.SWIPE_REFRESH)
-
-    }
-    val navigationImplementation = arrayListOf<String>().apply {
-        add(NavigationDependencies.NAVIGATION_RUNTIME)
-        add(NavigationDependencies.NAVIGATION_FRAGMENT_KTX)
-        add(NavigationDependencies.NAVIGATION_UI_KTX)
     }
 
     val thirdPartyImplementation = arrayListOf<String>().apply {
-        add(ThirdPartyDependencies.SDP)
-        add(ThirdPartyDependencies.SSP)
         add(ThirdPartyDependencies.LOTTIE)
+        add(ThirdPartyDependencies.GLIDE)
     }
     val hiltImplementation = arrayListOf<String>().apply {
         add(HiltDaggerDependencies.DAGGER_HILT)

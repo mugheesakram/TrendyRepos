@@ -1,10 +1,8 @@
 object AndroidXVersions {
     const val APPCOMPAT = "1.3.0"
-    const val FRAGMENT_KTX = "1.3.4"
     const val ACTIVITY_KTX = "1.2.3"
     const val CONSTRAINT_LAYOUT = "2.0.4"
     const val RECYCLERVIEW = "1.2.1"
-    const val CARD_VIEW = "1.0.0"
     const val MATERIAL = "1.3.0"
     const val ROOM_VERSION = "2.4.0-alpha03"
 }
@@ -29,14 +27,12 @@ object KotlinVersions {
 }
 
 object ThirdPartyVersions {
-    const val SDP = "1.0.6"
     const val LOTTIE = "4.1.0"
-    const val INLINE_ACTIVITY_RESULT = "1.0.4"
+    const val GLIDE = "4.12.0"
 }
 
 object BuildPluginsVersions {
     const val HILT = "2.37"
-    const val NAVIGATION = "2.3.5"
 }
 
 object HiltDaggerVersion {

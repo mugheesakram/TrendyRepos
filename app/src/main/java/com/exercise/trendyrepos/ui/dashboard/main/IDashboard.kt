@@ -12,7 +12,7 @@ interface IDashboard {
         val adaptor: RepositoryAdapter
         fun showDataView()
         fun showLoadingView()
-        fun showErrorView()
+        fun showErrorView(message: String)
     }
 
     interface ViewModel : IBase.ViewModel<State> {

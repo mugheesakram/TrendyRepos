@@ -5,7 +5,6 @@ plugins {
     kotlin(BuildPluginsConfig.kotlinAndroid)
     kotlin(BuildPluginsConfig.kotlinKapt)
     id(BuildPluginsConfig.androidHilt)
-    id(BuildPluginsConfig.navigationSafeArgs)
     id(BuildPluginsConfig.kotlinParcelize)
 }
 
@@ -77,7 +76,6 @@ dependencies {
     implementation(DependenciesManager.networkImplementation)
     implementation(DependenciesManager.lifeCycleKtxImplementation)
     implementation(DependenciesManager.androidxImplementation)
-    implementation(DependenciesManager.navigationImplementation)
     implementation(DependenciesManager.thirdPartyImplementation)
     implementation(DependenciesManager.hiltImplementation)
     implementation(DependenciesManager.roomImplementation)

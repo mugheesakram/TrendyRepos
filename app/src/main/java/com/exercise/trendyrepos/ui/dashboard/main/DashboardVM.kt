@@ -33,7 +33,7 @@ class DashboardVM @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         _repos.value = arrayListOf()
-                        viewState.uiState.value = UIState.Error()
+                        viewState.uiState.value = UIState.Error(response.error.message)
                     }
                 }
             }

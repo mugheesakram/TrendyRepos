@@ -55,36 +55,21 @@ object LifeCycleKtxDependencies {
 
 object AndroidxDependencies {
     const val APPCOMPAT = "androidx.appcompat:appcompat:${AndroidXVersions.APPCOMPAT}"
-    const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${AndroidXVersions.FRAGMENT_KTX}"
     const val ACTIVITY_KTX = "androidx.activity:activity-ktx:${AndroidXVersions.ACTIVITY_KTX}"
     const val CONSTRAINT_LAYOUT =
         "androidx.constraintlayout:constraintlayout:${AndroidXVersions.CONSTRAINT_LAYOUT}"
     const val CONSTRAINT_LAYOUT_SOLVER =
         "androidx.constraintlayout:constraintlayout-solver:${AndroidXVersions.CONSTRAINT_LAYOUT}"
-    const val CARD_VIEW = "androidx.cardview:cardview:${AndroidXVersions.CARD_VIEW}"
     const val RECYCLERVIEW =
         "androidx.recyclerview:recyclerview:${AndroidXVersions.RECYCLERVIEW}"
     const val MATERIAL = "com.google.android.material:material:${AndroidXVersions.MATERIAL}"
     const val SWIPE_REFRESH = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
 
-object NavigationDependencies {
-    //    Navigation KTX
-    const val NAVIGATION_RUNTIME =
-        "androidx.navigation:navigation-runtime-ktx:${BuildPluginsVersions.NAVIGATION}"
-    const val NAVIGATION_FRAGMENT_KTX =
-        "androidx.navigation:navigation-fragment-ktx:${BuildPluginsVersions.NAVIGATION}"
-    const val NAVIGATION_UI_KTX =
-        "androidx.navigation:navigation-ui-ktx:${BuildPluginsVersions.NAVIGATION}"
-}
-
 //ThirdParty
 object ThirdPartyDependencies {
-    const val SDP = "com.intuit.sdp:sdp-android:${ThirdPartyVersions.SDP}"
-    const val SSP = "com.intuit.ssp:ssp-android:${ThirdPartyVersions.SDP}"
     const val LOTTIE = "com.airbnb.android:lottie:${ThirdPartyVersions.LOTTIE}"
-    const val INLINE_ACTIVITY_RESULT =
-        "com.github.florent37:inline-activity-result-kotlin:${ThirdPartyVersions.INLINE_ACTIVITY_RESULT}"
+    const val GLIDE = "com.github.bumptech.glide:glide:${ThirdPartyVersions.GLIDE}"
 }
 
 object HiltDaggerDependencies {

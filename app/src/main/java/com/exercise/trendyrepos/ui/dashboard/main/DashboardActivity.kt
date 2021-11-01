@@ -28,13 +28,20 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
         viewModelObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.btnRetry.setOnClickListener {
+            viewModel.getTopGithubRepos("language=+sort:stars")
+        }
+    }
+
     override fun setGithubRepos(list: MutableList<Repo>) {
         if (!(list.isNullOrEmpty())) {
             showDataView()
             adaptor.setList(list)
             binding.recyclerView.adapter = adaptor
         } else {
-            showErrorView()
+            showErrorView("Empty List")
         }
     }
 
@@ -44,7 +51,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
                 showLoadingView()
             }
             is UIState.Error -> {
-                showErrorView()
+                showErrorView(it.error.toString())
             }
         }
     }
@@ -52,15 +59,16 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
     override fun showDataView() {
         binding.recyclerView.toVisible()
         // step2 hide shimmerview // loading
-        // step3 hide error view
+        binding.errorView.toGone()
     }
 
     override fun showLoadingView() {
         // show shimmer
     }
 
-    override fun showErrorView() {
-        // show error view
+    override fun showErrorView(message: String) {
+        binding.tvErrorMessage.text = message
+        binding.errorView.toVisible()
         binding.recyclerView.toGone()
     }
 
