@@ -19,25 +19,11 @@ abstract class BaseActivity<VB : ViewBinding, V : IBase.ViewModel<*>> : IBase.Vi
         super.onCreate(savedInstanceState)
         binding = getViewBinding()
         setContentView(binding.root)
-        registerStateListeners()
     }
 
     override fun onDestroy() {
         progress?.dismiss()
-        unregisterStateListeners()
         viewModel.viewState.uiState.removeObservers(this)
         super.onDestroy()
-    }
-
-    private fun registerStateListeners() {
-        if (viewModel is BaseViewModel<*>) {
-            viewModel.registerLifecycleOwner(this)
-        }
-    }
-
-    private fun unregisterStateListeners() {
-        if (viewModel is BaseViewModel<*>) {
-            viewModel.unregisterLifecycleOwner(this)
-        }
     }
 }

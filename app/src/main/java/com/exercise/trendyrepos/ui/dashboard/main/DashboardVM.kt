@@ -39,4 +39,8 @@ class DashboardVM @Inject constructor(
             }
         }
     }
+
+    override fun refreshData() {
+        getTopGithubRepos("language=+sort:stars", true)
+    }
 }

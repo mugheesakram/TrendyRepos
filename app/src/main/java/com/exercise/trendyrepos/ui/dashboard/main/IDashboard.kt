@@ -7,17 +7,19 @@ import com.exercise.trendyrepos.utils.base.IBase
 
 interface IDashboard {
     interface View : IBase.View<ViewModel> {
+        val adaptor: RepositoryAdapter
         fun viewModelObservers()
         fun setGithubRepos(list: MutableList<Repo>)
-        val adaptor: RepositoryAdapter
         fun showDataView()
         fun showLoadingView()
-        fun showErrorView(message: String)
+        fun showErrorView()
+        fun loadingView(show: Boolean)
     }
 
     interface ViewModel : IBase.ViewModel<State> {
         val repos: LiveData<MutableList<Repo>>
         fun getTopGithubRepos(query: String, isRefresh: Boolean)
+        fun refreshData()
     }
 
     interface State : IBase.State

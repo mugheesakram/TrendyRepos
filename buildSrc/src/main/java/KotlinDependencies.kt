@@ -70,6 +70,7 @@ object AndroidxDependencies {
 object ThirdPartyDependencies {
     const val LOTTIE = "com.airbnb.android:lottie:${ThirdPartyVersions.LOTTIE}"
     const val GLIDE = "com.github.bumptech.glide:glide:${ThirdPartyVersions.GLIDE}"
+    const val SHIMMER = "com.facebook.shimmer:shimmer:${ThirdPartyVersions.SHIMMER}"
 }
 
 object HiltDaggerDependencies {

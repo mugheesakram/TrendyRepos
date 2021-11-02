@@ -42,6 +42,7 @@ object DependenciesManager {
     val thirdPartyImplementation = arrayListOf<String>().apply {
         add(ThirdPartyDependencies.LOTTIE)
         add(ThirdPartyDependencies.GLIDE)
+        add(ThirdPartyDependencies.SHIMMER)
     }
     val hiltImplementation = arrayListOf<String>().apply {
         add(HiltDaggerDependencies.DAGGER_HILT)

@@ -29,6 +29,7 @@ object KotlinVersions {
 object ThirdPartyVersions {
     const val LOTTIE = "4.1.0"
     const val GLIDE = "4.12.0"
+    const val SHIMMER = "0.5.0"
 }
 
 object BuildPluginsVersions {

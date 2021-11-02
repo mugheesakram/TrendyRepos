@@ -1,8 +1,6 @@
 package com.exercise.trendyrepos.data.base
 
 import com.exercise.trendyrepos.data.base.error.ApiError
-import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Response
 import com.google.gson.stream.MalformedJsonException as MalformedJsonException1
 
@@ -43,12 +41,7 @@ abstract class BaseRepository : IRepository {
             404 -> getApiError(mapError(NetworkErrors.NotFound, response.code()))
             502 -> getApiError(mapError(NetworkErrors.BadGateway, response.code()))
             504 -> getApiError(mapError(NetworkErrors.NoInternet, response.code()))
-            in 400..500 -> getApiError(
-                mapError(
-                    NetworkErrors.InternalServerError(response.errorBody()?.string()),
-                    response.code()
-                )
-            )
+            in 400..500 -> getApiError(mapError(NetworkErrors.InternalServerError, response.code()))
             -1009 -> getApiError(mapError(NetworkErrors.NoInternet, response.code()))
             -1001 -> getApiError(mapError(NetworkErrors.RequestTimedOut, response.code()))
             else -> {
@@ -57,28 +50,6 @@ abstract class BaseRepository : IRepository {
         }
     }
 
-    private fun getError(response: String?): ServerError {
-        response?.let {
-            if (it.isNotBlank()) {
-                try {
-                    val obj = JSONObject(it)
-
-                    if (obj.has("error")) {
-                        val objError = obj.getJSONObject("error")
-                        val code = objError.getInt("code")
-                        val message = objError.getString("info")
-                        return ServerError(
-                            code,
-                            message,
-                        )
-                    }
-                } catch (e: JSONException) {
-                    ServerError(getDefaultCode(), e.localizedMessage)
-                }
-            }
-        }
-        return ServerError(getDefaultCode(), getDefaultMessage())
-    }
 
     private fun getApiError(error: ServerError): ApiError {
         return ApiError(
@@ -104,7 +75,7 @@ abstract class BaseRepository : IRepository {
                 code,
                 "You don't have access to this information"
             )
-            is NetworkErrors.InternalServerError -> getError(error.response)
+            is NetworkErrors.InternalServerError -> ServerError(code, getDefaultMessage())
             is NetworkErrors.UnknownError -> ServerError(code, getDefaultMessage())
         }
     }
@@ -126,7 +97,7 @@ abstract class BaseRepository : IRepository {
         object BadGateway : NetworkErrors()
         object NotFound : NetworkErrors()
         object Forbidden : NetworkErrors()
-        class InternalServerError(val response: String?) : NetworkErrors()
+        object InternalServerError : NetworkErrors()
         open class UnknownError : NetworkErrors()
     }
 }

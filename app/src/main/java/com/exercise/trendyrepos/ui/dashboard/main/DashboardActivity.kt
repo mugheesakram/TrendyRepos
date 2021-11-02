@@ -26,16 +26,16 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
         super.onCreate(savedInstanceState)
         viewModel.getTopGithubRepos("language=+sort:stars", false)
         viewModelObservers()
+        initListeners()
     }
 
-    override fun onResume() {
-        super.onResume()
+    private fun initListeners() {
         binding.btnRetry.setOnClickListener {
-            viewModel.getTopGithubRepos("language=+sort:stars", false)
+            viewModel.refreshData()
         }
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getTopGithubRepos("language=+sort:stars", true)
+            viewModel.refreshData()
         }
     }
 
@@ -45,7 +45,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
             adaptor.setList(list)
             binding.recyclerView.adapter = adaptor
         } else {
-            showErrorView("Empty List")
+            showErrorView()
         }
     }
 
@@ -55,25 +55,37 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
                 showLoadingView()
             }
             is UIState.Error -> {
-                showErrorView(it.error.toString())
+                showErrorView()
             }
         }
     }
 
     override fun showDataView() {
         binding.recyclerView.toVisible()
-        // step2 hide shimmerview // loading
+        loadingView(false)
         binding.errorView.toGone()
     }
 
     override fun showLoadingView() {
-        // show shimmer
+        loadingView(true)
+        binding.errorView.toGone()
+        binding.recyclerView.toGone()
     }
 
-    override fun showErrorView(message: String) {
-        binding.tvErrorMessage.text = message
+    override fun showErrorView() {
         binding.errorView.toVisible()
+        loadingView(false)
         binding.recyclerView.toGone()
+    }
+
+    override fun loadingView(show: Boolean) {
+        if (show) {
+            binding.shimmerLayout.shimmerFrameLayout.toVisible()
+            binding.shimmerLayout.shimmerFrameLayout.startShimmer()
+        } else {
+            binding.shimmerLayout.shimmerFrameLayout.toGone()
+            binding.shimmerLayout.shimmerFrameLayout.stopShimmer()
+        }
     }
 
     override fun viewModelObservers() {

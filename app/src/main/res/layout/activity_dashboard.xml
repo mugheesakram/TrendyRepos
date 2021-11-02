@@ -23,6 +23,10 @@
             tools:itemCount="10"
             tools:listitem="@layout/item_repo" />
 
+        <include
+            android:id="@+id/shimmerLayout"
+            layout="@layout/layout_shimmer" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/errorView"
             android:layout_width="match_parent"
@@ -55,8 +59,8 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:maxLines="2"
-                android:textSize="18sp"
-                tools:text="Something went wrong" />
+                android:text="Something went wrong"
+                android:textSize="18sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvErrorDescription"

@@ -7,8 +7,7 @@ interface IBase {
         val viewModel: V
     }
 
-    interface ViewModel<S : State> :
-        ILifecycle {
+    interface ViewModel<S : State> {
         val viewState: S
     }
 
