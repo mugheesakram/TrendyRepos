@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 
-abstract class BaseViewModel<S : IBase.State> : ViewModel(), IBase.ViewModel<S> {
+abstract class BaseViewModel : ViewModel(), IBase.ViewModel {
     fun launch(dispatcher: CoroutineContext = Dispatchers.IO, block: suspend () -> Unit) {
         viewModelScope.launch(dispatcher) { block() }
     }

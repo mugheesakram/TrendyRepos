@@ -90,7 +90,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, IDashboard.View
 
     override fun viewModelObservers() {
         viewModel.repos.observe(this, ::setGithubRepos)
-        viewModel.viewState.uiState.observe(this, {
+        viewModel.uiState.observe(this, {
             binding.swipeRefreshLayout.isRefreshing = false
             handleUIState(it)
         })

@@ -15,16 +15,17 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardVM @Inject constructor(
     private val repository: IDataInfo,
-    override val viewState: DashboardState,
-) : BaseViewModel<IDashboard.State>(),
+) : BaseViewModel(),
     IDashboard.ViewModel {
+    private var _uiState: MutableLiveData<UIState> = MutableLiveData()
+    override var uiState: LiveData<UIState> = _uiState
 
     private val _repos: MutableLiveData<MutableList<Repo>> = MutableLiveData()
     override var repos: LiveData<MutableList<Repo>> = _repos
 
     override fun getTopGithubRepos(query: String, isRefresh: Boolean) {
         launch {
-            viewState.uiState.postValue(UIState.Loading)
+            _uiState.postValue(UIState.Loading)
             val response = repository.getTopGithubRepositories(query, isRefresh)
             withContext(Dispatchers.Main) {
                 when (response) {
@@ -33,7 +34,7 @@ class DashboardVM @Inject constructor(
                     }
                     is ApiResponse.Error -> {
                         _repos.value = arrayListOf()
-                        viewState.uiState.value = UIState.Error(response.error.message)
+                        _uiState.value = UIState.Error(response.error.message)
                     }
                 }
             }

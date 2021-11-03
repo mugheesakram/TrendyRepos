@@ -6,7 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseActivity<VB : ViewBinding, V : IBase.ViewModel<*>> : IBase.View<V>,
+abstract class BaseActivity<VB : ViewBinding, V : IBase.ViewModel> : IBase.View<V>,
     AppCompatActivity() {
     lateinit var binding: VB
     private var progress: Dialog? = null
@@ -23,7 +23,6 @@ abstract class BaseActivity<VB : ViewBinding, V : IBase.ViewModel<*>> : IBase.Vi
 
     override fun onDestroy() {
         progress?.dismiss()
-        viewModel.viewState.uiState.removeObservers(this)
         super.onDestroy()
     }
 }
