@@ -123,8 +123,6 @@ data class Repo(
     @SerializedName("owner")
     @Embedded
     var owner: Owner? = null,
-    @SerializedName("private")
-    var `private`: Boolean? = null,
     @SerializedName("pulls_mirrorUrl")
     var pullsUrl: String? = null,
     @SerializedName("pushed_at")
@@ -166,5 +164,7 @@ data class Repo(
     @SerializedName("watchers")
     var watchers: Int? = null,
     @SerializedName("watchers_count")
-    var watchersCount: Int? = null
+    var watchersCount: Int? = null,
+    @SerializedName("private")
+    var isPrivate: Boolean? = null,
 )

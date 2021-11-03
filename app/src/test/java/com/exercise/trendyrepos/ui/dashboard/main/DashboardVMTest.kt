@@ -5,7 +5,9 @@ import com.exercise.trendyrepos.CoroutineRule
 import com.exercise.trendyrepos.data.IDataInfo
 import com.exercise.trendyrepos.data.MockDataRepository
 import com.exercise.trendyrepos.getOrAwaitValue
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.resetMain
 import org.junit.*
 
 @ExperimentalCoroutinesApi
@@ -41,5 +43,7 @@ class DashboardVMTest {
 
     @After
     fun tearDown() {
+        Dispatchers.resetMain() //reset
+        mainCoroutineRule.cleanupTestCoroutines()
     }
 }
