@@ -1,6 +1,5 @@
 package com.exercise.trendyrepos.data.remote
 
-import com.exercise.trendyrepos.Utils.enqueueResponse
 import com.exercise.trendyrepos.Utils.readFileFromTestResources
 import com.exercise.trendyrepos.data.base.ApiResponse
 import com.exercise.trendyrepos.data.dto.GithubRepos
@@ -39,7 +38,6 @@ class RemoteDataRepositoryTest {
 
     @Test
     fun `should fetch repos correctly given 200 response`() {
-        mockWebServer.enqueueResponse("discover-movies-200.json", 200)
         val mock = readFileFromTestResources("success_response_api.json")
         mockWebServer.apply {
             enqueue(
