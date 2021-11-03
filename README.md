@@ -45,5 +45,15 @@ I have kept UI of this application really simple. I have not implemented materia
 ## Gradle
 
 For gradle, I have used Kotlin DSL. For me, It keeps gradle dependencies neat and more
-understandable. 
+understandable.
+
+## Data Layer
+
+Data layer is surely very important of this application. I have Implemented data layer:
+
+- When user launches application for the very first time, API is called and the response data is
+  stored in **Room Database**.
+- Now, when the user comes for the second time, we will get **stale data** from the local db.
+- If user pull to refresh, app will fetch fresh data from the remote repository.
+- In case of error, the retry button will also fetch data from the remote repository.
 
