@@ -19,7 +19,7 @@ class MockDataRepository : IDataInfo {
             ApiResponse.Error(ApiError(400, "Bad request"))
     }
 
-    private fun getMockResponse(fileName: String = "success_response_api.json"): GithubRepos {
+    private fun getMockResponse(): GithubRepos {
         val gson = GsonBuilder().create()
         val itemType = object : TypeToken<GithubRepos>() {}.type
         return gson.fromJson(readFileFromTestResources("success_response_api.json"), itemType)

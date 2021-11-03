@@ -85,7 +85,6 @@ object TestDependencies {
     const val JUNIT = "junit:junit:${TestDependenciesVersions.JUNIT4}"
     const val MOCKK = "io.mockk:mockk:${TestDependenciesVersions.MOCKK}"
     const val ROBOLECTRIC = "org.robolectric:robolectric:${TestDependenciesVersions.ROBOLECTRIC}"
-    const val KLUENT = "org.amshove.kluent:kluent:${TestDependenciesVersions.KLUENT}"
     const val TESTRUNNER = "androidx.test:runner:${TestDependenciesVersions.TESTRUNNER}"
     const val TESTRULES = "androidx.test:rules:${TestDependenciesVersions.TESTRULES}"
     const val ESPRESSOCORE =

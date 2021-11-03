@@ -6,6 +6,7 @@ import com.exercise.trendyrepos.Utils
 import com.exercise.trendyrepos.data.IDataInfo
 import com.exercise.trendyrepos.data.MockDataRepository
 import com.exercise.trendyrepos.data.base.ApiResponse
+import com.exercise.trendyrepos.data.base.error.ApiError
 import com.exercise.trendyrepos.data.dto.GithubRepos
 import com.exercise.trendyrepos.getOrAwaitValue
 import com.google.gson.GsonBuilder
@@ -14,8 +15,12 @@ import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain
-import org.junit.*
+import org.junit.After
+import org.junit.Assert
+import org.junit.Rule
+import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class DashboardVMTest {
@@ -30,29 +35,28 @@ class DashboardVMTest {
     private val mockDataRepository: IDataInfo = MockDataRepository()
     private val dataRepository: IDataInfo = mockk()
 
-    @Before
-    fun setUp() {
-        sut = DashboardVM(mockDataRepository, DashboardState())
-    }
 
     @Test
-    fun `get github repos if data is not null or empty`() {
+    fun `get github repos if data is not null or empty`() = runBlocking {
+        sut = DashboardVM(mockDataRepository)
         sut.getTopGithubRepos("language=+sort:stars", false)
         Assert.assertEquals(false, sut.repos.getOrAwaitValue().isNullOrEmpty())
     }
 
     @Test
-    fun `get github repos from MockDataRepository if data is null or empty`() {
-        sut.getTopGithubRepos("", false)
-        val actual = sut.repos.getOrAwaitValue().isNullOrEmpty()
+    fun `get github repos from MockDataRepository if data is null or empty`() =
+        runBlocking {
+            sut = DashboardVM(mockDataRepository)
 
-        Assert.assertEquals(true, actual)
-    }
+            sut.getTopGithubRepos("", false)
+            val actual = sut.repos.getOrAwaitValue().isNullOrEmpty()
 
+            Assert.assertEquals(true, actual)
+        }
 
     @Test
-    fun `get response when data is mocked and returns data successfully`() {
-        sut = DashboardVM(dataRepository, DashboardState())
+    fun `get response when data is mocked and returns data successfully`() = runBlocking {
+        sut = DashboardVM(dataRepository)
         val response = ApiResponse.Success(200, getMockResponse())
         coEvery { dataRepository.getTopGithubRepositories("abcdefg", false) } returns response
 
@@ -63,10 +67,20 @@ class DashboardVMTest {
         Assert.assertEquals(false, actual)
     }
 
+    @Test
+    fun `get empty repos list when VM APi method is returns error`() = runBlocking {
+        sut = DashboardVM(dataRepository)
+        val response = ApiResponse.Error(ApiError(504, "No Internet"))
+        coEvery { dataRepository.getTopGithubRepositories("abcdefg", false) } returns response
+
+        sut.getTopGithubRepos("abcdefg", false)
+
+        Assert.assertEquals(true, sut.repos.getOrAwaitValue().isNullOrEmpty())
+    }
+
     @After
     fun tearDown() {
         Dispatchers.resetMain() //reset
-        mainCoroutineRule.cleanupTestCoroutines()
     }
 
     private fun getMockResponse(): GithubRepos {

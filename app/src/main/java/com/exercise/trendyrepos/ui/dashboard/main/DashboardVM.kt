@@ -33,7 +33,7 @@ class DashboardVM @Inject constructor(
                         _repos.value = response.data.repos as MutableList<Repo>?
                     }
                     is ApiResponse.Error -> {
-                        _repos.value = arrayListOf()
+                        _repos.value = mutableListOf()
                         _uiState.value = UIState.Error(response.error.message)
                     }
                 }

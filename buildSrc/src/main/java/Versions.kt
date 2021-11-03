@@ -45,7 +45,6 @@ object TestDependenciesVersions {
     const val JUNIT4 = "4.13.1"
     const val MOCKK = "1.10.0"
     const val ROBOLECTRIC = "4.4"
-    const val KLUENT = "1.14"
     const val TESTRUNNER = "1.1.0"
     const val ESPRESSOCORE = "3.2.0"
     const val ESPRESSOINTENTS = "3.1.0"
