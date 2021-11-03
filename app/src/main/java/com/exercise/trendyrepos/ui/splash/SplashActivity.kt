@@ -2,24 +2,23 @@ package com.exercise.trendyrepos.ui.splash
 
 import android.animation.Animator
 import android.content.Intent
-import androidx.activity.viewModels
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.airbnb.lottie.LottieAnimationView
 import com.exercise.trendyrepos.R
-import com.exercise.trendyrepos.databinding.ActivitySplashBinding
 import com.exercise.trendyrepos.ui.dashboard.main.DashboardActivity
-import com.exercise.trendyrepos.utils.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashActivity : BaseActivity<ActivitySplashBinding, ISplash.ViewModel>(), ISplash.View {
-    override val viewModel: ISplash.ViewModel by viewModels<SplashVM>()
-    override fun getLayoutId() = R.layout.activity_splash
-    override fun getViewBinding(): ActivitySplashBinding =
-        ActivitySplashBinding.inflate(layoutInflater)
+class SplashActivity : AppCompatActivity() {
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_splash)
 
-        binding.lottieAnimation.addAnimatorListener(object : Animator.AnimatorListener {
+        val lottieAnimation = findViewById<LottieAnimationView>(R.id.lottieAnimation)
+
+        lottieAnimation.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(p0: Animator?) {}
             override fun onAnimationEnd(p0: Animator?) {
                 startActivity(Intent(this@SplashActivity, DashboardActivity::class.java))
