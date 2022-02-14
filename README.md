@@ -1,4 +1,4 @@
-# Exercise project for SadaPay
+#Exercise
 
 Hi, I am Mughees Akram. Here is my best try to showcase my skills and understanding of best
 practices.
